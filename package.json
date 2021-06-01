@@ -7,10 +7,9 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "bootstrap-icons-vue": "^0.7.0",
     "uuid": "^8.3.2",
-    "vue": "^3.0.5",
-    "vue-meta": "^2.4.0",
-    "vue-unicons": "^3.2.1"
+    "vue": "^3.0.5"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.2.2",
