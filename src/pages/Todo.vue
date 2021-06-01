@@ -26,7 +26,7 @@
         <div
           v-for="(todo, index) in todoPage.todoList"
           :key="index"
-          :class="{ 'bg-gray-100 cusrsor-default': todo.status === true }"
+          :class="{ 'bg-gray-100 cusrsor-default': todo.status }"
           class="flex rounded border-1 p-3"
         >
           <div v-if="todo.id === todoPage.form.editId" class="w-full">
@@ -41,7 +41,7 @@
           <p
             v-else
             class="text-base text-gray-600 flex-grow self-center"
-            :class="{ 'line-through text-red-500': todo.status === true }"
+            :class="{ 'line-through text-red-500': todo.status }"
           >{{ todo.todo }}</p>
           <div
             v-if="todoPage.form.editId === ''"
@@ -52,24 +52,21 @@
               class="btn w-8 h-8 rounded bg-green-400 text-white"
               @click="todoPage.selectTodo(index)"
             >
-              <unicon name="edit-alt" fill="white" width="20" />
+              <BIconPencilSquare />
             </button>
             <button
               class="btn w-8 h-8 rounded text-white"
               :class="todo.status ? 'bg-gray-400' : 'bg-yellow-400'"
               @click.prevent="todoPage.changeStatus(index)"
             >
-              <unicon
-                :name="todo.status ? 'times' : 'check'"
-                fill="white"
-                width="20"
-              />
+              <BIconXLg v-if="todo.status" />
+              <BIconCheckLg v-else />
             </button>
             <button
               class="btn w-8 h-8 rounded bg-red-400 text-white"
               @click="todoPage.deleteTodo(index)"
             >
-              <unicon name="trash-alt" fill="white" width="20" />
+              <BIconTrash />
             </button>
           </div>
         </div>
@@ -79,6 +76,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, reactive } from 'vue';
+// @ts-ignore
 import { v4 as idV4 } from 'uuid';
 
 interface ListTodo {
@@ -100,22 +98,22 @@ export default defineComponent({
       todoList: reactive([] as listType),
       createTodo: () : void => {
         const newTodo: string = todoPage.form.todoText;
-        const todos: listType = todoPage.todoList;
-        if (newTodo !== "") {
+        const todos = todoPage.todoList;
+        if (newTodo.length > 0) {
           todos.unshift({ id: idV4(), todo: newTodo, status: false });
         }
         todoPage.form.todoText = '';
       },
       deleteTodo: (index: number) : void => {
-        const todo: listType = todoPage.todoList;
+        const todo = todoPage.todoList;
         todo.splice(index, 1);
       },
       changeStatus: (index: number) : void => {
-        const todo: listType = todoPage.todoList;
+        const todo = todoPage.todoList;
         todo[index].status = !todo[index].status;
       },
       selectTodo: (index: number) : void =>{
-        const todo: listType = todoPage.todoList;
+        const todo = todoPage.todoList;
         todoPage.form.editId = todo[index].id;
         todoPage.form.textEdit = todo[index].todo;
       },
