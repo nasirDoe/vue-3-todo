@@ -2,11 +2,11 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import './scss/main.scss'
 import 'virtual:windi.css'
+const app = createApp(App)
 
-import Unicon from 'vue-unicons'
-import { uniTimes, uniEditAlt, uniCheck, uniTrashAlt } from 'vue-unicons/dist/icons'
-Unicon.add([uniTimes, uniEditAlt, uniCheck, uniTrashAlt])
-
-createApp(App)
-.use(Unicon)
-.mount('#app')
+import { BIconTrash, BIconXLg, BIconPencilSquare, BIconCheckLg } from 'bootstrap-icons-vue'
+app.component('BIconTrash', BIconTrash)
+app.component('BIconXLg', BIconXLg)
+app.component('BIconPencilSquare', BIconPencilSquare)
+app.component('BIconCheckLg', BIconCheckLg)
+app.mount('#app')
