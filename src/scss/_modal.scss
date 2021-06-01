@@ -1,0 +1,11 @@
+.modal {
+  @apply self-center max-w-lg w-full flex flex-col;
+  &__overlay {
+    @apply w-full h-full fixed z-50 top-0 left-0 bg-opacity-60 bg-black flex justify-center;
+  }
+  &__header,
+  &__footer,
+  &__body {
+    @apply relative;
+  }
+}
