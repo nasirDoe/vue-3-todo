@@ -33,10 +33,10 @@
             <input
               type="text"
               v-model="todoPage.form.textEdit"
-              class="w-full border-1 rounded px-2 py-1 text-sm text-gray-500 outline-none focus:shadow transition-all duration-300 focus:outline-none focus:border-green-200"
+              class="w-full border-1 rounded px-3 py-2 text-base text-gray-500 outline-none focus:shadow transition-all duration-300 focus:outline-none focus:border-green-200"
               @keydown.enter="todoPage.updateTodo"
             />
-            <span class="block py-1 text-xs text-gray-400">Enter to save</span>
+            <span class="block py-2 text-sm text-gray-400">Enter to save</span>
           </div>
           <p
             v-else
@@ -44,7 +44,7 @@
             :class="{ 'line-through text-red-500': todo.status }"
           >{{ todo.todo }}</p>
           <div
-            v-if="todoPage.form.editId === ''"
+            v-if="todo.id !== todoPage.form.editId"
             class="inline-flex space-x-2"
           >
             <button
