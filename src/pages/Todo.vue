@@ -119,8 +119,13 @@ export default defineComponent({
       },
       updateTodo: () : void => {
         const index = todoPage.todoList.findIndex((item) => item.id === todoPage.form.editId)
-        todoPage.todoList[index].todo = todoPage.form.textEdit
-        todoPage.form.editId = ''
+        if (todoPage.form.textEdit.length > 0) {
+          todoPage.todoList[index].todo = todoPage.form.textEdit
+          todoPage.form.editId = ''
+        } else {
+          alert('Jangan dikosingin gaes!!')
+        }
+
       }
     };
 
