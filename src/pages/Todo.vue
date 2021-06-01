@@ -125,7 +125,6 @@ export default defineComponent({
         } else {
           alert('Jangan dikosingin gaes!!')
         }
-
       }
     };
 
